@@ -1,0 +1,112 @@
+INICIANDO O MYSQL
+mysqlq -u (usuario) -p (dar enter)
+Enter password: (digita a senha)
+Welcome .. (mensagem q entrou)
+
+MYSQL - CRIAR BANCO DE DADOS
+
+. CREATE DATABASE bd_loja; >>>>> exemplo
+. USE bd_loja; >>>>> esta nesse banco de dado
+. CREATE TABLE tb_produtos (
+   - id INT AUTO_INCREMENT PRIMARY KEY,
+   - NomeProduto VARCHAR(255),
+   - Categoria VARCHAR(255),
+   - QuantidadeEstoque INT,
+   - Valor DECIMAL
+);
+
+OBS.: No create table, montamos a estrutura do que compõe a tabela, sempre q adicionar tem q usar a "," e no final ";"
+
+Query OK, 0 rows affected (0.04 sec)
+. MySQL - Inserindo dados de arquivos externos (TESTANDO SEGURANÇA DE AQRUIVO)
+  - lOAD DATA INFILE "(O Caminho onde se encontra o arquivo)
+  - INTO TABLE tb_produtos
+  - FIELDS TERMINATED BY""','"" OBS1.: Essa é a estrura do arquivo, pode variar de arquivo para arquivo ','
+
+  - LINES TERMINATED BY'\n'
+  - IGNORE 1 ROWS
+  - (NomeProduto, Categoria, QuantidadeEstoque, valor);
+
+
+OBS2.: Caso erra , use as teclas 'ctrl + c'; ai deverá repetir o cod desde o inicio.
+
+ SHOW VARIABLES LIKE 'secure_file_priv';
++------------------+------------------------------------------------+
+| Variable_name    | Value                                          |
++------------------+------------------------------------------------+
+| secure_file_priv | C:\ProgramData\MySQL\MySQL Server 8.1\Uploads\ |
++------------------+------------------------------------------------+
+1 row in set (0.00 sec)
+
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.1\\Uploads\\estoque.csv"
+     INTO TABLE tb_produtos
+     FIELDS TERMINATED BY ','
+     LINES TERMINATED BY '\n'
+     IGNORE 1 ROWS
+     (NomeProduto, Categoria, QuantidadeEstoque, Valor);
+
+mysql> SELECT * FROM tb_produtos;
++----+------------------------------------------+---------------+-------------------+-------+
+| id | NomeProduto                              | Categoria     | QuantidadeEstoque | Valor |
++----+------------------------------------------+---------------+-------------------+-------+
+|  1 | Smartphone Samsung Galaxy S21            | Celular       |                50 |  5000 |
+|  2 | Notebook Dell Inspiron 15                | Computador    |                30 |  3499 |
+|  3 | Televisão LG 55 4K                       | Televisão     |                20 |  3000 |
+|  4 | Fone de Ouvido Sony WH-1000XM4           | Áudio         |                40 |  1999 |
+|  5 | Console PlayStation 5                    | Videogame     |                15 |  4999 |
+|  6 | Câmera Canon EOS Rebel T7                | Câmera        |                10 |  2499 |
+|  7 | Impressora HP DeskJet 2722               | Impressora    |                25 |   500 |
+|  8 | Roteador TP-Link Archer A7               | Rede          |                60 |   299 |
+|  9 | Caixa de Som JBL Flip 5                  | áudio         |                35 |   900 |
+| 10 | Tablet Apple iPad 10.2"                  | Tablet        |                20 |  2999 |
+| 11 | Smartwatch Samsung Galaxy Watch 4        | Acessórios    |                30 |  1299 |
+| 12 | Microfone Blue Yeti                      | áudio         |                15 |   699 |
+| 13 | Monitor LG 27 Full HD                    | Monitor       |                25 |  1099 |
+| 14 | Teclado Mecânico Razer BlackWidow        | Acessórios    |                50 |   499 |
+| 15 | Mouse Logitech G502                      | Acessórios    |                45 |   399 |
+| 16 | Projetor Epson Home Cinema               | Projetor      |                10 |  2499 |
+| 17 | HD Externo Seagate 2TB                   | Armazenamento |                60 |   700 |
+| 18 | SSD Samsung 970 EVO 1TB                  | Armazenamento |                40 |   800 |
+| 19 | Fone de Ouvido Apple AirPods Pro         | Áudio         |                30 |  1299 |
+| 20 | Câmera de Segurança TP-Link Tapo C200    | Segurança     |                20 |   500 |
+| 21 | Mochila para Notebook Lenovo             | Acessórios    |                25 |   200 |
+| 22 | Teclado e Mouse Logitech MK270           | Acessórios    |                35 |   299 |
+| 23 | Caixa de Som Bluetooth Anker Soundcore   | Áudio         |                30 |   400 |
+| 24 | Monitor Gamer AOC 24''                   | Monitor       |                25 |   899 |
+| 25 | Câmera Fujifilm Instax Mini 11           | Câmera        |                15 |   699 |
+| 26 | Kit de Microfone para Streaming          | Áudio         |                20 |   599 |
+| 27 | Sistema de Som Philco                    | Áudio         |                10 |  1399 |
+| 28 | Fone de Ouvido Sem Fio Bose QuietComfort | Áudio         |                10 |  2399 |
+| 29 | Placa de Vídeo NVIDIA GeForce RTX 3060   | Computador    |                 5 |  2999 |
+| 30 | Desktop HP Pavilion                      | Computador    |                12 |  3999 |
+| 31 | Smartphone Xiaomi Redmi Note 10          | Celular       |                45 |  1500 |
+| 32 | Roteador Wi-Fi Mesh TP-Link Deco M5      | Rede          |                15 |   799 |
+| 33 | Camcorder Panasonic HC-VX981K            | Câmera        |                 5 |  3499 |
+| 34 | Console Xbox Series X                    | Videogame     |                10 |  4999 |
+| 35 | Fonte de Alimentação Corsair RM850x      | Computador    |                20 |   899 |
+| 36 | Caixa de Som JBL Charge 4                | Áudio         |                25 |   900 |
+| 37 | Impressora Multifuncional Brother        | Impressora    |                15 |   899 |
+| 38 | Câmera GoPro Hero 9                      | Cãmera        |                 8 |  3199 |
+| 39 | Cartãoo de Memória SanDisk Ultra 64GB    | Armazenamento |                50 |   200 |
+| 40 | Smartphone Motorola Moto G100            | Celular       |                40 |  2499 |
+| 41 | Cabo HDMI Amazon Basics                  | Acessórios    |               100 |    50 |
+| 42 | Monitor Samsung 32 Curvo                 | Monitor       |                20 |  1599 |
+| 43 | Teclado Gamer HyperX Alloy FPS           | Acessórios    |                30 |   500 |
+| 44 | Headset HyperX Cloud II                  | Áudio         |                20 |   600 |
+| 45 | Tablet Samsung Galaxy Tab S7             | Tablet        |                10 |  2999 |
+| 46 | Smartphone Asus Zenfone 8                | Celular       |                30 |  3499 |
++----+------------------------------------------+---------------+-------------------+-------+
+46 rows in set (0.00 sec)
+
+CONECTAR NO PYTHON
+
+# pip install pandas sqlalchemy pymysql
+from sqlalchemy import create_engine
+import pandas as pd
+
+host = 'localhost'
+user = 'root'
+passaword = 'root'
+database = 'bd_loja'
+
+engine = create_engine(f'mysql+pymysql://{user}:{passaword}@{host}/{database}')
